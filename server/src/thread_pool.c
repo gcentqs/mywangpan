@@ -7,7 +7,7 @@ void *thread_func(void *p)
     while (1)
     {
         pthread_mutex_lock(&pPool->que.mutex);
-        if (0 == pPool->que.que_size)
+        while (0 == pPool->que.que_size)
         {
             printf("child wait\n");
             pthread_cond_wait(&pPool->que.cond, &pPool->que.mutex);
